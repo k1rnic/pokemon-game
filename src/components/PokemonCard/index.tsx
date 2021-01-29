@@ -42,7 +42,7 @@ const PokemonCard: FC<Props> = ({ id, name, type, img, values }) => {
               <div className={styles.info}>
                 <span className={styles.number}>#{id}</span>
                 <p className={styles.name}>{name}</p>
-                <small className={styles.type}>
+                <small className={styles[type]}>
                   Type: <span>{type}</span>
                 </small>
               </div>
