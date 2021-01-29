@@ -1,3 +1,28 @@
+@font-face {
+  font-family: 'Pokemon-Solid';
+  src: url(./assets/fonts/Pokemon-Solid.woff2) format('woff');
+}
+
+@font-face {
+  font-family: 'Pokemon-Pixel';
+  src: url(./assets/fonts/Pokemon-Pixel.woff) format('woff');
+}
+
+:root {
+  --font-family-regular: 'Pokemon-Pixel', Arial, Helvetica, sans-serif;
+  --font-family-header: 'Pokemon-Solid', Arial, Helvetica, sans-serif;
+
+  --font-size-h1: 6rem;
+  --font-size-h2: 3.5rem;
+  --font-size-h3: 2.4rem;
+
+  --font-size-smallest: 0.65rem;
+  --font-size-smaller: 0.8rem;
+  --font-size-regular: 1rem;
+  --font-size-bigger: 1.25rem;
+  --font-size-biggest: 1.5rem;
+}
+
 *,
 *::before,
 *::after,
@@ -7,8 +32,6 @@
   box-sizing: border-box;
 }
 
-@import 'https://fonts.googleapis.com/css?family=Overlock:400,400i,700|Oleo+Script';
-
 html,
 body {
   height: 100%;
@@ -17,9 +40,34 @@ body {
 body {
   color: #252934;
   background: #fafafa;
-  font-size: 62.5%;
-  font-family: 'Overlock', Arial, Helvetica, sans-serif;
+  font-family: var(--font-family-regular);
   overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-family-header);
+  letter-spacing: 0.25rem;
+  color: #ffd500;
+  text-shadow: -3px 0 #00509d, 0 3px #00509d, 3px 0 #00509d, 0 -3px #00509d;
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+  line-height: 6rem;
+  padding-bottom: 3rem;
+}
+
+h3 {
+  font-size: var(--font-size-h2);
+}
+
+h3 {
+  font-size: var(--font-size-h3);
 }
 
 a,
@@ -33,4 +81,8 @@ a:visited {
 a:hover,
 a:active {
   color: #f300b4;
+}
+
+ul li {
+  padding: 1rem 0;
 }

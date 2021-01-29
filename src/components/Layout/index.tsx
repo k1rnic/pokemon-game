@@ -5,12 +5,11 @@ import classnames from 'classnames';
 interface Props {
   id: string;
   title: string;
-  descr: string;
   urlBg?: string;
   colorBg?: string;
 }
 
-const Layout: FC<Props> = ({ id, title, descr, urlBg, colorBg }) => {
+const Layout: FC<Props> = ({ id, title, urlBg, colorBg, children }) => {
   const backgroundStyle = urlBg
     ? { backgroundImage: `url(${urlBg})` }
     : { background: colorBg };
@@ -24,7 +23,7 @@ const Layout: FC<Props> = ({ id, title, descr, urlBg, colorBg }) => {
             <span className={styles.separator}></span>
           </div>
           <div className={`${classnames(styles.desc, styles.full)}`}>
-            <p>{descr}</p>
+            {children}
           </div>
         </article>
       </div>

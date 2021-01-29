@@ -1,5 +1,5 @@
 .root {
-  background: #202736;
+  background: #eae2b7;
   background-attachment: fixed;
   background-size: cover;
   position: relative;
@@ -34,13 +34,13 @@
   position: absolute;
   bottom: -300px;
   left: 0;
-  background: url(../../assets/img/trees.svg) bottom left repeat-x;
+  background: url(../../assets/img/main-bg.png) bottom center repeat-x;
   background-size: cover;
   width: 100%;
-  height: 80%;
+  height: 85%;
   opacity: 0;
   animation: forest-move-in 1000ms 500ms forwards;
-  border-bottom: 300px solid #181d23;
+  border-bottom: 300px solid #eae2b7;
 }
 
 @keyframes forest-move-in {
@@ -56,8 +56,7 @@
 .container {
   width: fit-content;
   position: absolute;
-  right: 0;
-  top: 50%;
+  top: 30%;
   left: 50%;
   opacity: 0;
   transform: translate(-50%, -50%);
@@ -75,16 +74,10 @@
 }
 
 .container h1 {
-  font-size: 65px;
-  font-weight: normal;
-  font-style: italic;
-  color: #fafafa;
-  line-height: 65px;
+  text-align: center;
 }
 
 .container p {
-  font-size: 28px;
-  font-weight: normal;
-  color: #fafafa;
-  line-height: 32px;
+  color: #00509d;
+  text-align: center;
 }
