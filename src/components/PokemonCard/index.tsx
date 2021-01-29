@@ -9,7 +9,7 @@ interface Props extends IPokemon {}
 const PokemonCard: FC<Props> = ({ id, name, type, img, values }) => {
   const [isFaceDown, setFaceDown] = useState(false);
 
-  const handleCardClick = () => setFaceDown(!isFaceDown);
+  const handleCardClick = () => setFaceDown((state) => !state);
 
   return (
     <div className={styles.root} onClick={handleCardClick}>
