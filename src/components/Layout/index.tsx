@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import styles from './style.module.css';
+import classnames from 'classnames';
 
 interface Props {
   id: string;
@@ -22,7 +23,7 @@ const Layout: FC<Props> = ({ id, title, descr, urlBg, colorBg }) => {
             <h3>{title}</h3>
             <span className={styles.separator}></span>
           </div>
-          <div className={`${styles.desc} ${styles.full}`}>
+          <div className={`${classnames(styles.desc, styles.full)}`}>
             <p>{descr}</p>
           </div>
         </article>
