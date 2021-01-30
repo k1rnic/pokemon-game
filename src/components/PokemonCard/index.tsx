@@ -14,10 +14,9 @@ const PokemonCard: FC<Props> = ({ id, name, type, img, values }) => {
   return (
     <div className={styles.root} onClick={handleCardClick}>
       <div
-        className={classnames(
-          styles.pokemonCard,
-          isFaceDown ? styles.active : '',
-        )}
+        className={classnames(styles.pokemonCard, {
+          [styles.active]: isFaceDown,
+        })}
       >
         <div className={styles.cardFront}>
           <div className={classnames(styles.wrap, styles.front)}>
