@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer>
       <div className={styles.wrapper}>
-        <h3>THANKS FOR VISITING</h3>
+        <p>THANKS FOR VISITING</p>
         <p>© 2021 #ReactMarathon.</p>
       </div>
     </footer>
