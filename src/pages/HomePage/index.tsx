@@ -4,8 +4,6 @@ import Layout from '../../components/Layout';
 import BattleBg from '../../assets/img/battle-bg.png';
 import PokemonCard from '../../components/PokemonCard';
 import pokemonCards from '../../data/pokemon-cards.json';
-
-import styles from './style.module.css';
 import Footer from '../../components/Footer';
 import NavMenu from '../../components/NavMenu';
 

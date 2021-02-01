@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react';
-import Menu, { NavItem } from './Menu';
+import Menu from './Menu';
 import NavBar from './NavBar';
 import navItems from '../../data/nav-items.json';
 
