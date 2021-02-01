@@ -1,0 +1,33 @@
+:root {
+  --font-size-button: var(--font-size-regular);
+  --button-color-default: var(--color-primary);
+  --button-color-success: var(--color-success);
+  --button-color-danger: var(--color-danger);
+  --button-color-warning: var(--color-warning);
+}
+
+.button {
+  padding: 0.5rem 1rem;
+  padding-top: 1rem;
+  border-radius: 3px;
+  border: none;
+  cursor: pointer;
+  font-size: var(--font-size-button);
+}
+
+.default {
+  background-color: var(--button-color-default);
+  color: white;
+}
+
+.success {
+  background-color: var(--button-color-success);
+}
+
+.danger {
+  background-color: var(--button-color-danger);
+}
+
+.warning {
+  background-color: var(--button-color-warning);
+}

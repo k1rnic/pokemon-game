@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import { IPokemon } from '../../models/pokemon';
+import { IPokemon } from '../../types/pokemon';
 import styles from './style.module.css';
 import classnames from 'classnames';
 import PokemonCardFace from '../../assets/img/card-back-side.jpg';
