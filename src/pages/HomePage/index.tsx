@@ -7,6 +7,7 @@ import pokemonCards from '../../data/pokemon-cards.json';
 
 import styles from './style.module.css';
 import Footer from '../../components/Footer';
+import NavMenu from '../../components/NavMenu';
 
 interface Props {
   onRouteChange?: (route: string) => any;
@@ -19,6 +20,7 @@ const HomePage: FC<Props> = ({ onRouteChange }) => {
 
   return (
     <>
+      <NavMenu />
       <Header
         title="Pokemon Royale"
         descr="Gotta catch em all"

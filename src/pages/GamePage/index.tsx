@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import Button from '../../components/Common/Button';
+import Button from '../../components/Button';
 import styles from './style.module.css';
 
 interface Props {

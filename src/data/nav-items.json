@@ -1,0 +1,18 @@
+[
+  {
+    "label": "home",
+    "route": "welcome"
+  },
+  {
+    "label": "game",
+    "route": "game"
+  },
+  {
+    "label": "about",
+    "route": "about"
+  },
+  {
+    "label": "contact",
+    "route": "contact"
+  }
+]

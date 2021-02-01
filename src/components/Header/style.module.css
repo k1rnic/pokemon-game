@@ -1,5 +1,5 @@
 .root {
-  background: #eae2b7;
+  background: #202934;
   background-attachment: fixed;
   background-size: cover;
   position: relative;
@@ -40,7 +40,7 @@
   height: 85%;
   opacity: 0;
   animation: forest-move-in 1000ms 500ms forwards;
-  border-bottom: 300px solid #eae2b7;
+  border-bottom: 300px solid #202934;
 }
 
 @keyframes forest-move-in {
@@ -81,7 +81,7 @@
 }
 
 .container p {
-  color: var(--color-primary);
+  color: var(--color-warning);
   text-align: center;
   padding-bottom: 1rem;
 }
