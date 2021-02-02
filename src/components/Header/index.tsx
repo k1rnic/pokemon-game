@@ -1,8 +1,8 @@
-import React, { FC } from 'react';
+import React, { FC, HTMLProps } from 'react';
 import Button from '../Button';
 import styles from './style.module.css';
 
-interface Props {
+interface Props extends HTMLProps<HTMLElement> {
   title: string;
   descr: string;
   onPlayClick?: () => any;
@@ -11,10 +11,11 @@ interface Props {
 const Header: FC<Props> = ({
   title = 'pokemon game header',
   descr = 'pokemon game description',
+  id,
   onPlayClick,
 }) => {
   return (
-    <header className={styles.root}>
+    <header id={id} className={styles.root}>
       <div className={styles.forest}></div>
       <div className={styles.container}>
         <h1>{title}</h1>

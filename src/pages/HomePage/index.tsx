@@ -16,15 +16,36 @@ const HomePage: FC<Props> = ({ onRouteChange }) => {
     onRouteChange?.('game');
   };
 
+  const handleNavChange = (page: string) => {
+    onRouteChange?.(page);
+  };
+
   return (
     <>
-      <NavMenu />
+      <NavMenu onRouteChangeClick={handleNavChange} />
       <Header
+        id="welcomeSection"
         title="Pokemon Royale"
         descr="Gotta catch em all"
         onPlayClick={handlePlayClick}
       />
-      <Layout id="gameRulesSection" title="Rules" colorBg="#89c8f4">
+
+      <Layout id="yourCardsSection" title="Your cards" urlBg={BattleBg}>
+        <div className="flex">
+          {pokemonCards.map(({ id, name, type, img, values }) => (
+            <PokemonCard
+              key={id}
+              id={id}
+              name={name}
+              type={type}
+              img={img}
+              values={values}
+            />
+          ))}
+        </div>
+      </Layout>
+
+      <Layout id="gameRulesSection" title="Rules" colorBg="#88ab77">
         <ul>
           <li>
             In the game two players face off against one another, one side
@@ -38,21 +59,6 @@ const HomePage: FC<Props> = ({ onRouteChange }) => {
             <b style={{ color: 'blue' }}>blue</b>.
           </li>
         </ul>
-      </Layout>
-
-      <Layout id="cardSection" title="Your cards" urlBg={BattleBg}>
-        <div className="flex">
-          {pokemonCards.map(({ id, name, type, img, values }) => (
-            <PokemonCard
-              key={id}
-              id={id}
-              name={name}
-              type={type}
-              img={img}
-              values={values}
-            />
-          ))}
-        </div>
       </Layout>
 
       <Layout id="winRulesSection" title="How to win" colorBg="#88ab77">
