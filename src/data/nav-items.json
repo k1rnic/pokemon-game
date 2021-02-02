@@ -1,0 +1,22 @@
+[
+  {
+    "label": "home",
+    "route": "welcomeSection",
+    "page": "home"
+  },
+  {
+    "label": "game",
+    "route": "game",
+    "page": "game"
+  },
+  {
+    "label": "cards",
+    "route": "yourCardsSection",
+    "page": "home"
+  },
+  {
+    "label": "rules",
+    "route": "gameRulesSection",
+    "page": "home"
+  }
+]

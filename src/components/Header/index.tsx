@@ -1,26 +1,29 @@
-import React, { FC } from 'react';
+import React, { FC, HTMLProps } from 'react';
+import Button from '../Button';
 import styles from './style.module.css';
 
-interface Props {
+interface Props extends HTMLProps<HTMLElement> {
   title: string;
   descr: string;
+  onPlayClick?: () => any;
 }
 
-const Header: FC<Props> = ({ title, descr }) => {
+const Header: FC<Props> = ({
+  title = 'pokemon game header',
+  descr = 'pokemon game description',
+  id,
+  onPlayClick,
+}) => {
   return (
-    <header className={styles.root}>
+    <header id={id} className={styles.root}>
       <div className={styles.forest}></div>
       <div className={styles.container}>
         <h1>{title}</h1>
         <p>{descr}</p>
+        <Button label="start" onClick={onPlayClick} />
       </div>
     </header>
   );
-};
-
-Header.defaultProps = {
-  title: 'pokemon game header',
-  descr: 'pokemon game description',
 };
 
 export default Header;
