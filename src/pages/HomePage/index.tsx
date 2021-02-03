@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import BattleBg from '../../assets/img/battle-bg.png';
-import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import Layout from '../../components/Layout';
 import PokemonCard from '../../components/PokemonCard';
@@ -71,7 +70,6 @@ const HomePage: FC<Props> = () => {
           </li>
         </ul>
       </Layout>
-      <Footer />
     </>
   );
 };

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Redirect, Route, Switch, useRouteMatch } from 'react-router-dom';
 import './App.css';
+import Footer from './components/Footer';
 import NavMenu from './components/NavMenu';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
@@ -22,6 +23,7 @@ const App = () => {
         <Route path="/notFound" component={NotFound} />
         <Route render={() => <Redirect to="/notFound" />} />
       </Switch>
+      <Footer />
     </>
   );
 };
