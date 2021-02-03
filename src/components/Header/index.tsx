@@ -17,6 +17,8 @@ const Header: FC<Props> = ({
   return (
     <header id={id} className={styles.root}>
       <div className={styles.forest}></div>
+      <div className={styles.silhouette}></div>
+      <div className={styles.moon}></div>
       <div className={styles.container}>
         <h1>{title}</h1>
         <p>{descr}</p>
