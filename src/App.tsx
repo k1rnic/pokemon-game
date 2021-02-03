@@ -1,6 +1,7 @@
 import React from 'react';
 import { Redirect, Route, Switch, useRouteMatch } from 'react-router-dom';
 import './App.css';
+import Logo from './assets/img/pokeball.png';
 import Footer from './components/Footer';
 import NavMenu from './components/NavMenu';
 import AboutPage from './pages/AboutPage';
@@ -14,7 +15,7 @@ const App = () => {
 
   return (
     <>
-      <NavMenu bgActive={!isHome?.isExact} />
+      <NavMenu bgActive={!isHome?.isExact} logoSrc={Logo} />
       <Switch>
         <Route path="/" exact component={HomePage} />
         <Route path="/game" component={GamePage} />

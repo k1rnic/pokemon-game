@@ -26,6 +26,10 @@
   cursor: default;
 }
 
+.navbar .brand .logo {
+  height: 50px;
+}
+
 /***** Menu Button *****/
 .menuButton {
   position: relative;

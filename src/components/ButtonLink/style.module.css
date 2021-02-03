@@ -1,0 +1,14 @@
+.buttonLink button {
+  width: 100%;
+}
+
+.buttonLink button,
+.buttonLink:visited button {
+  color: white;
+  font-size: var(--font-size-button);
+}
+
+.buttonLink:hover button,
+.buttonLink:active button {
+  color: #f300b4;
+}

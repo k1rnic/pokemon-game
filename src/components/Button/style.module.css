@@ -15,17 +15,6 @@
   font-size: var(--font-size-button);
 }
 
-.buttonLink,
-.buttonLink:visited {
-  color: white;
-  font-size: var(--font-size-button);
-}
-
-.buttonLink:hover,
-.buttonLink:active {
-  color: #f300b4;
-}
-
 .default {
   background-color: var(--button-color-default);
   color: white;

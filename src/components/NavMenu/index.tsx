@@ -5,9 +5,10 @@ import NavBar from './NavBar';
 
 interface Props {
   bgActive: boolean;
+  logoSrc?: string;
 }
 
-const NavMenu: FC<Props> = ({ bgActive }) => {
+const NavMenu: FC<Props> = ({ bgActive, logoSrc }) => {
   const [isOpen, setIsOpen] = useState<boolean | null>(null);
 
   const handleMenuToggle = () => {
@@ -17,7 +18,12 @@ const NavMenu: FC<Props> = ({ bgActive }) => {
   return (
     <>
       <Menu items={navItems} isOpen={isOpen} onRouteChange={handleMenuToggle} />
-      <NavBar isOpen={isOpen} bgActive={bgActive} onToggle={handleMenuToggle} />
+      <NavBar
+        logoSrc={logoSrc}
+        isOpen={isOpen}
+        bgActive={bgActive}
+        onToggle={handleMenuToggle}
+      />
     </>
   );
 };

@@ -1,5 +1,5 @@
 import React, { FC, HTMLProps } from 'react';
-import Button from '../Button';
+import ButtonLink from '../ButtonLink';
 import styles from './style.module.css';
 
 interface Props extends HTMLProps<HTMLElement> {
@@ -20,7 +20,7 @@ const Header: FC<Props> = ({
       <div className={styles.container}>
         <h1>{title}</h1>
         <p>{descr}</p>
-        <Button label="start" link="/game" />
+        <ButtonLink label="start" link="/game" />
       </div>
     </header>
   );

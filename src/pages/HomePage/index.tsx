@@ -1,9 +1,6 @@
 import React, { FC } from 'react';
-import BattleBg from '../../assets/img/battle-bg.png';
 import Header from '../../components/Header';
 import Layout from '../../components/Layout';
-import PokemonCard from '../../components/PokemonCard';
-import pokemonCards from '../../data/pokemon-cards.json';
 
 interface Props {}
 
@@ -15,21 +12,6 @@ const HomePage: FC<Props> = () => {
         title="Pokemon Royale"
         descr="Gotta catch em all"
       />
-
-      <Layout id="yourCardsSection" title="Your cards" urlBg={BattleBg}>
-        <div className="flex">
-          {pokemonCards.map(({ id, name, type, img, values }) => (
-            <PokemonCard
-              key={id}
-              id={id}
-              name={name}
-              type={type}
-              img={img}
-              values={values}
-            />
-          ))}
-        </div>
-      </Layout>
 
       <Layout id="gameRulesSection" title="Rules" colorBg="#88ab77">
         <ul>

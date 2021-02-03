@@ -1,21 +1,31 @@
-import React, { FC, useState } from 'react';
+import classnames from 'classnames';
+import React, { FC } from 'react';
+import PokemonCardFace from '../../assets/img/card-back-side.jpg';
 import { IPokemon } from '../../types/pokemon';
 import styles from './style.module.css';
-import classnames from 'classnames';
-import PokemonCardFace from '../../assets/img/card-back-side.jpg';
 
-interface Props extends IPokemon {}
+interface Props extends IPokemon {
+  onCardClick: (id: number) => any;
+}
 
-const PokemonCard: FC<Props> = ({ id, name, type, img, values }) => {
-  const [isFaceDown, setFaceDown] = useState(false);
-
-  const handleCardClick = () => setFaceDown((state) => !state);
+const PokemonCard: FC<Props> = ({
+  id,
+  name,
+  type,
+  img,
+  values,
+  isActive,
+  onCardClick,
+}) => {
+  const handleCardClick = () => {
+    onCardClick?.(id);
+  };
 
   return (
     <div className={styles.root} onClick={handleCardClick}>
       <div
         className={classnames(styles.pokemonCard, {
-          [styles.active]: isFaceDown,
+          [styles.active]: isActive,
         })}
       >
         <div className={styles.cardFront}>
