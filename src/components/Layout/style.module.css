@@ -54,8 +54,11 @@
 .root .desc {
   grid-column-end: span 2;
   background: #ffffffaa;
-  padding: 2rem;
   text-align: justify;
+}
+
+.root .desc:not(:empty) {
+  padding: 2rem;
 }
 
 @media only screen and (max-width: 1149px) {

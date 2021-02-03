@@ -1,33 +1,24 @@
-import React, { FC, Fragment, useState } from 'react';
+import React, { FC, useState } from 'react';
+import navItems from '../../data/nav-items.json';
 import Menu from './Menu';
 import NavBar from './NavBar';
-import navItems from '../../data/nav-items.json';
 
 interface Props {
-  onRouteChangeClick: (page: string) => any;
+  bgActive: boolean;
 }
 
-const NavMenu: FC<Props> = ({ onRouteChangeClick }) => {
-  const [active, setActive] = useState(false);
+const NavMenu: FC<Props> = ({ bgActive }) => {
+  const [isOpen, setIsOpen] = useState<boolean | null>(null);
 
   const handleMenuToggle = () => {
-    setActive((state) => !state);
-  };
-
-  const handleRouteChange = (route: string) => {
-    setActive((state) => !state);
-    onRouteChangeClick(route);
+    setIsOpen((state) => !state);
   };
 
   return (
-    <Fragment>
-      <Menu
-        items={navItems}
-        active={active}
-        onRouteChangeClick={handleRouteChange}
-      />
-      <NavBar active={active} onToggle={handleMenuToggle} />
-    </Fragment>
+    <>
+      <Menu items={navItems} isOpen={isOpen} onRouteChange={handleMenuToggle} />
+      <NavBar isOpen={isOpen} bgActive={bgActive} onToggle={handleMenuToggle} />
+    </>
   );
 };
 

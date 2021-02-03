@@ -1,22 +1,10 @@
 import React, { FC } from 'react';
-import Button from '../../components/Button';
-import styles from './style.module.css';
+import Layout from '../../components/Layout';
 
-interface Props {
-  onRouteChange?: (route: string) => any;
-}
+interface Props {}
 
-const GamePage: FC<Props> = ({ onRouteChange }) => {
-  const handleBackClick = () => {
-    onRouteChange?.('home');
-  };
-
-  return (
-    <div className={styles.header}>
-      <Button label="back" onClick={handleBackClick} />
-      <h3 className={styles.title}>Game</h3>
-    </div>
-  );
+const GamePage: FC<Props> = () => {
+  return <Layout id="gameSection" title="Game"></Layout>;
 };
 
 export default GamePage;
