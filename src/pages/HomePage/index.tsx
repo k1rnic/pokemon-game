@@ -1,49 +1,17 @@
 import React, { FC } from 'react';
 import Header from '../../components/Header';
 import Layout from '../../components/Layout';
-import BattleBg from '../../assets/img/battle-bg.png';
-import PokemonCard from '../../components/PokemonCard';
-import pokemonCards from '../../data/pokemon-cards.json';
-import Footer from '../../components/Footer';
-import NavMenu from '../../components/NavMenu';
 
-interface Props {
-  onRouteChange?: (route: string) => any;
-}
+interface Props {}
 
-const HomePage: FC<Props> = ({ onRouteChange }) => {
-  const handlePlayClick = () => {
-    onRouteChange?.('game');
-  };
-
-  const handleNavChange = (page: string) => {
-    onRouteChange?.(page);
-  };
-
+const HomePage: FC<Props> = () => {
   return (
     <>
-      <NavMenu onRouteChangeClick={handleNavChange} />
       <Header
         id="welcomeSection"
         title="Pokemon Royale"
         descr="Gotta catch em all"
-        onPlayClick={handlePlayClick}
       />
-
-      <Layout id="yourCardsSection" title="Your cards" urlBg={BattleBg}>
-        <div className="flex">
-          {pokemonCards.map(({ id, name, type, img, values }) => (
-            <PokemonCard
-              key={id}
-              id={id}
-              name={name}
-              type={type}
-              img={img}
-              values={values}
-            />
-          ))}
-        </div>
-      </Layout>
 
       <Layout id="gameRulesSection" title="Rules" colorBg="#88ab77">
         <ul>
@@ -84,7 +52,6 @@ const HomePage: FC<Props> = ({ onRouteChange }) => {
           </li>
         </ul>
       </Layout>
-      <Footer />
     </>
   );
 };

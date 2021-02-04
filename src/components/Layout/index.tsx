@@ -1,10 +1,10 @@
+import classnames from 'classnames';
 import React, { FC } from 'react';
 import styles from './style.module.css';
-import classnames from 'classnames';
 
 interface Props {
-  id: string;
-  title: string;
+  id?: string;
+  title?: string;
   urlBg?: string;
   colorBg?: string;
 }

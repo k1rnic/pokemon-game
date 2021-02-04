@@ -4,6 +4,7 @@
   clip-path: polygon(0 0, 20% 5%, 100% 0, 100% 100%, 80% 95%, 0 100%);
   z-index: 5;
   background-attachment: fixed;
+  min-height: calc(100% - 100px);
 }
 
 .root .wrapper {
@@ -54,8 +55,11 @@
 .root .desc {
   grid-column-end: span 2;
   background: #ffffffaa;
-  padding: 2rem;
   text-align: justify;
+}
+
+.root .desc:not(:empty) {
+  padding: 2rem;
 }
 
 @media only screen and (max-width: 1149px) {

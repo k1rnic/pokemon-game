@@ -1,46 +1,39 @@
-import React, { FC } from 'react';
 import classnames from 'classnames';
+import React, { FC } from 'react';
+import { Link } from 'react-router-dom';
 import styles from './style.module.css';
 
 export interface NavItem {
   label: string;
   route: string;
-  page: string;
 }
 
 interface Props {
   items: NavItem[];
-  active?: boolean;
-  onRouteChangeClick: (route: string) => any;
+  isOpen: boolean | null;
+  onRouteChange: (route: string) => any;
 }
 
-const Menu: FC<Props> = ({
-  items = [],
-  active = false,
-  onRouteChangeClick,
-}) => {
+const Menu: FC<Props> = ({ items = [], isOpen, onRouteChange }) => {
   const handleRouteChange = (route: string) => {
-    onRouteChangeClick?.(route);
+    onRouteChange?.(route);
   };
 
   return (
     <div
       className={classnames(styles.menuContainer, {
-        [styles.active]: active,
-        [styles.deactive]: !active,
+        [styles.active]: isOpen === true,
+        [styles.deactive]: isOpen === false,
       })}
     >
       <div className={styles.overlay} />
       <div className={styles.menuItems}>
         <ul>
-          {items.map((item) => (
-            <li key={item.route}>
-              <a
-                href={`#${item.route}`}
-                onClick={() => handleRouteChange(item.page)}
-              >
-                {item.label?.toUpperCase()}
-              </a>
+          {items.map(({ route, label }) => (
+            <li key={route}>
+              <Link to={`${route}`} onClick={() => handleRouteChange(route)}>
+                {label?.toUpperCase()}
+              </Link>
             </li>
           ))}
         </ul>

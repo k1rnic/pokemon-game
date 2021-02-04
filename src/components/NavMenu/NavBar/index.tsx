@@ -1,25 +1,33 @@
-import React, { FC } from 'react';
 import classnames from 'classnames';
+import React, { FC } from 'react';
 import styles from './style.module.css';
 
 interface Props {
-  active?: boolean;
+  isOpen: boolean | null;
+  logoSrc?: string;
+  bgActive?: boolean;
   onToggle: () => any;
 }
 
-const NavBar: FC<Props> = ({ active, onToggle }) => {
+const NavBar: FC<Props> = ({ isOpen, logoSrc, bgActive = false, onToggle }) => {
   return (
-    <nav id={styles.navbar}>
+    <nav
+      className={classnames(styles.navbar, {
+        [styles.bgActive]: bgActive,
+      })}
+    >
       <div className={styles.navWrapper}>
-        <p className={styles.brand}>LOGO</p>
-        <span
+        <p className={styles.brand}>
+          <img className={styles.logo} src={logoSrc} alt="LOGO" />
+        </p>
+        <div
           className={classnames(styles.menuButton, {
-            [styles.active]: active,
+            [styles.active]: isOpen,
           })}
           onClick={onToggle}
         >
           <span />
-        </span>
+        </div>
       </div>
     </nav>
   );
