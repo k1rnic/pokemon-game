@@ -8,3 +8,9 @@
   flex: 1;
   text-align: center;
 }
+
+.gameToolbar {
+  display: flex;
+  padding: 1rem;
+  justify-content: flex-start;
+}
