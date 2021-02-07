@@ -11,15 +11,12 @@ type CollectionKey = keyof Collection;
 const useDB = <K extends CollectionKey, T extends Collection[K]>(
   collectionName: K,
 ) => {
-  const collectionRef = database.child(collectionName);
-
   const [collection, setCollection] = useState<{
     [key: string]: T;
   }>({});
 
   const createEntity = (entity?: Partial<T>) => {
-    const newItemObjID = collectionRef.push().key!;
-    collectionRef.child(newItemObjID).set(entity);
+    database.child(collectionName).push(entity);
   };
 
   const updateEntity = (objID: string, updateFn: (entity: T) => Partial<T>) => {
@@ -28,15 +25,17 @@ const useDB = <K extends CollectionKey, T extends Collection[K]>(
       ...updateFn(collection[objID]),
     };
 
-    collectionRef.child(objID).set(entity);
+    database.child(collectionName).child(objID).set(entity);
   };
 
   useEffect(() => {
-    collectionRef?.on('value', (snapshot) => {
-      setCollection(snapshot.val());
-    });
-    return () => collectionRef.off('value');
-  }, [collectionRef]);
+    if (collectionName) {
+      database.child(collectionName).on('value', (snapshot) => {
+        setCollection(snapshot.val());
+      });
+      return () => database.child(collectionName).off('value');
+    }
+  }, [collectionName]);
 
   return [collection, createEntity, updateEntity] as const;
 };
