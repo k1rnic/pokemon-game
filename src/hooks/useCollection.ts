@@ -8,7 +8,7 @@ type Collection = {
 
 type CollectionKey = keyof Collection;
 
-const useDB = <K extends CollectionKey, T extends Collection[K]>(
+const useCollection = <K extends CollectionKey, T extends Collection[K]>(
   collectionName: K,
 ) => {
   const [collection, setCollection] = useState<{
@@ -39,4 +39,4 @@ const useDB = <K extends CollectionKey, T extends Collection[K]>(
   return [collection, createEntity, updateEntity] as const;
 };
 
-export default useDB;
+export default useCollection;

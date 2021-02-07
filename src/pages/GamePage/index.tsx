@@ -3,13 +3,13 @@ import BattleBg from '../../assets/img/battle-bg.png';
 import Button from '../../components/Button';
 import Layout from '../../components/Layout';
 import PokemonCard from '../../components/PokemonCard';
-import useDB from '../../hooks/useDB';
+import useCollection from '../../hooks/useCollection';
 import styles from './style.module.css';
 
 interface Props {}
 
 const GamePage: FC<Props> = () => {
-  const [pokemons, createPokemon, updatePokemon] = useDB('pokemons');
+  const [pokemons, createPokemon, updatePokemon] = useCollection('pokemons');
 
   const handlePokemonClick = (objID: string) => {
     updatePokemon(objID, (state) => ({ isActive: !state.isActive }));
