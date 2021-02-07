@@ -21,11 +21,10 @@ const useDB = <K extends CollectionKey, T extends Collection[K]>(
 
   const updateEntity = (objID: string, updateFn: (entity: T) => Partial<T>) => {
     const entity = {
-      ...collection[objID],
       ...updateFn(collection[objID]),
     };
 
-    database.child(collectionName).child(objID).set(entity);
+    database.child(collectionName).child(objID).update(entity);
   };
 
   useEffect(() => {
