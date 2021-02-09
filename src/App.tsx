@@ -4,11 +4,11 @@ import { Redirect, Route, Switch, useRouteMatch } from 'react-router-dom';
 import Logo from './assets/img/pokeball.png';
 import Footer from './components/Footer';
 import NavMenu from './components/NavMenu';
-import AboutPage from './pages/AboutPage';
-import ContactPage from './pages/ContactPage';
-import GamePage from './pages/GamePage';
-import HomePage from './pages/HomePage';
-import NotFound from './pages/NotFound';
+import AboutPage from './routes/About';
+import ContactPage from './routes/Contacts';
+import GamePage from './routes/Game';
+import HomePage from './routes/Home';
+import NotFound from './routes/NotFound';
 import styles from './styles.module.css';
 
 const App = () => {
