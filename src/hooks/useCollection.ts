@@ -2,29 +2,56 @@ import { useEffect, useState } from 'react';
 import database from '../services/database';
 import { IPokemon } from '../types/pokemon';
 
-type Collection = {
+export type CollectionMap = {
   pokemons: IPokemon;
 };
 
-type CollectionKey = keyof Collection;
+export type CollectionKey = keyof CollectionMap;
 
-const useCollection = <K extends CollectionKey, T extends Collection[K]>(
+export type Collection = {
+  [key: string]: CollectionMap[CollectionKey];
+};
+
+export type SelectEntityFn = (entityId: string) => any;
+
+export type CreateEntityFn = (
+  entity: Partial<CollectionMap[CollectionKey]>,
+) => any;
+
+export type UpdateEntityFn = (
+  id: string,
+  updateFn: (
+    entity: CollectionMap[CollectionKey],
+  ) => Partial<CollectionMap[CollectionKey]>,
+) => any;
+
+const useCollection = <K extends CollectionKey, T extends CollectionMap[K]>(
   collectionName: K,
 ) => {
   const [collection, setCollection] = useState<{
     [key: string]: T;
   }>({});
 
-  const createEntity = (entity?: Partial<T>) => {
+  const createEntity: CreateEntityFn = (entity) => {
     database.child(collectionName).push(entity);
   };
 
-  const updateEntity = (objID: string, updateFn: (entity: T) => Partial<T>) => {
+  const updateEntity: UpdateEntityFn = (entityId, updateFn) => {
     const entity = {
-      ...updateFn(collection[objID]),
+      ...updateFn(collection[entityId]),
     };
 
-    database.child(collectionName).child(objID).update(entity);
+    database.child(collectionName).child(entityId).update(entity);
+  };
+
+  const selectEntity: SelectEntityFn = (entityId) => {
+    setCollection((state) => ({
+      ...state,
+      [entityId]: {
+        ...state[entityId],
+        isSelected: !state[entityId].isSelected,
+      },
+    }));
   };
 
   useEffect(() => {
@@ -36,7 +63,7 @@ const useCollection = <K extends CollectionKey, T extends Collection[K]>(
     }
   }, [collectionName]);
 
-  return [collection, createEntity, updateEntity] as const;
+  return [collection, createEntity, updateEntity, selectEntity] as const;
 };
 
 export default useCollection;

@@ -5,8 +5,8 @@ import styles from './style.module.css';
 
 interface Props extends IPokemon {
   onCardClick: (id: number) => any;
-  minimize: boolean;
-  className: string;
+  minimize?: boolean;
+  className?: string;
 }
 
 const PokemonCard: FC<Props> = ({
@@ -15,16 +15,22 @@ const PokemonCard: FC<Props> = ({
   type,
   img,
   values,
-  isActive,
-  minimize,
+  minimize = false,
   className,
+  isSelected,
   onCardClick,
 }) => {
+  const handleCardClick = () => {
+    onCardClick?.(id);
+  };
+
   return (
     <div
-      className={classnames(styles[className], styles.pokemonCard, {
-        [styles.active]: isActive,
+      className={classnames(className, styles.pokemonCard, {
+        [styles.active]: true,
+        [styles.selected]: isSelected,
       })}
+      onClick={handleCardClick}
     >
       <div className={styles.cardFront}>
         <div className={classnames(styles.wrap, styles.front)}>

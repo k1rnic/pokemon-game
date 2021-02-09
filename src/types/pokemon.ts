@@ -24,5 +24,6 @@ export interface IPokemon {
   height?: number;
   id: number;
   values: IPosition;
-  isActive: boolean;
+  isActive?: boolean;
+  isSelected?: boolean;
 }

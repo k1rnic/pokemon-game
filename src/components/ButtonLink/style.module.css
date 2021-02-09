@@ -8,7 +8,7 @@
   font-size: var(--font-size-button);
 }
 
-.buttonLink:hover button,
-.buttonLink:active button {
+.buttonLink:not(.disabled):hover button,
+.buttonLink:not(.disabled):active button {
   color: #f300b4;
 }

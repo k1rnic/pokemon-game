@@ -1,6 +1,6 @@
 import classnames from 'classnames';
 import React from 'react';
-import { Redirect, Route, Switch, useRouteMatch } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import Logo from './assets/img/pokeball.png';
 import Footer from './components/Footer';
 import NavMenu from './components/NavMenu';
@@ -12,14 +12,12 @@ import NotFound from './routes/NotFound';
 import styles from './styles.module.css';
 
 const App = () => {
-  const isHome = useRouteMatch('/');
-
   return (
     <>
-      <NavMenu bgActive={!isHome?.isExact} logoSrc={Logo} />
+      <NavMenu bgActive={false} logoSrc={Logo} />
       <div
         className={classnames(styles.wrap, {
-          [styles.isHomePage]: isHome?.isExact,
+          [styles.isHomePage]: true,
         })}
       >
         <Switch>

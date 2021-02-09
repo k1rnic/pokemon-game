@@ -1,21 +1,24 @@
 import { FC } from 'react';
 import { Route, Switch, useRouteMatch } from 'react-router-dom';
-import Board from './Board';
-import Finish from './FInish';
-import Start from './Start';
+import { PokemonProvider } from '../../context/PokemonContext';
+import Board from './routes/Board';
+import Finish from './routes/Finish';
+import Start from './routes/Start';
 
 interface Props {}
 
-const GamePage: FC<Props> = () => {
+const Game: FC<Props> = () => {
   const match = useRouteMatch();
 
   return (
-    <Switch>
-      <Route path={`${match?.path}`} exact component={Start} />
-      <Route path={`${match?.path}/board`} component={Board} />
-      <Route path={`${match?.path}/finish`} component={Finish} />
-    </Switch>
+    <PokemonProvider>
+      <Switch>
+        <Route path={`${match?.path}`} exact component={Start} />
+        <Route path={`${match?.path}/board`} component={Board} />
+        <Route path={`${match?.path}/finish`} component={Finish} />
+      </Switch>
+    </PokemonProvider>
   );
 };
 
-export default GamePage;
+export default Game;
