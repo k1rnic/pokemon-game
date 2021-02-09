@@ -1,49 +1,50 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import BattleBg from '../../assets/img/battle-bg.png';
+import Button from '../../components/Button';
 import Layout from '../../components/Layout';
 import PokemonCard from '../../components/PokemonCard';
-import pokemonCards from '../../data/pokemon-cards.json';
-import { IPokemon } from '../../types/pokemon';
+import useCollection from '../../hooks/useCollection';
+import styles from './style.module.css';
 
 interface Props {}
 
 const GamePage: FC<Props> = () => {
-  const [pokemons, setPokemons] = useState<IPokemon[]>(pokemonCards);
+  const [pokemons, createPokemon, updatePokemon] = useCollection('pokemons');
 
-  const handleCardClick = (id: number) => {
-    setPokemons((state) => {
-      const activePokemonIdx = state.findIndex((pokemon) => pokemon.id === id);
+  const handlePokemonClick = (objID: string) => {
+    updatePokemon(objID, (state) => ({ isActive: !state.isActive }));
+  };
 
-      if (!state[activePokemonIdx]) {
-        return state;
-      }
-
-      return [
-        ...state.slice(0, activePokemonIdx),
-        {
-          ...state[activePokemonIdx],
-          isActive: !state[activePokemonIdx].isActive,
-        },
-        ...state.slice(activePokemonIdx + 1),
-      ];
-    });
+  const handlePokemonAddClick = () => {
+    const list = Object.values(pokemons);
+    const newItem = list[Math.floor(Math.random() * list.length)];
+    createPokemon({ ...newItem, isActive: false });
   };
 
   return (
     <Layout id="gameSection" title="Game" urlBg={BattleBg}>
+      <div className={styles.gameToolbar}>
+        <Button
+          label="add pokemon"
+          type="default"
+          onClick={handlePokemonAddClick}
+        ></Button>
+      </div>
       <div className="flex">
-        {pokemons.map(({ id, name, type, img, values, isActive }) => (
-          <PokemonCard
-            key={id}
-            id={id}
-            name={name}
-            type={type}
-            img={img}
-            values={values}
-            isActive={isActive}
-            onCardClick={handleCardClick}
-          />
-        ))}
+        {Object.entries(pokemons).map(
+          ([objID, { id, name, type, img, values, isActive }]) => (
+            <PokemonCard
+              key={objID}
+              id={id}
+              name={name}
+              type={type}
+              img={img}
+              values={values}
+              isActive={isActive}
+              onCardClick={() => handlePokemonClick(objID)}
+            />
+          ),
+        )}
       </div>
     </Layout>
   );
