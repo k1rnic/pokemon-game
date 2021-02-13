@@ -33,6 +33,7 @@ const Start: FC<Props> = () => {
           disabled={selected.length !== 5}
           onClick={navigateToBoard}
         ></Button>
+        <p>choose 5 cards to start</p>
       </div>
       <div className={classnames(styles.wrap)}>
         {Object.entries(items).map(

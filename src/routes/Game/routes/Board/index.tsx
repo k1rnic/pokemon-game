@@ -20,7 +20,6 @@ const Board: FC = () => {
               type={type}
               img={img}
               values={values}
-              isSelected={isSelected}
               onCardClick={() => {}}
               minimize
             />
