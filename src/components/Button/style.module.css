@@ -4,6 +4,7 @@
   --button-color-success: var(--color-success);
   --button-color-danger: var(--color-danger);
   --button-color-warning: var(--color-warning);
+  --button-color-disabled: darkgray;
 }
 
 .button {
@@ -13,6 +14,11 @@
   border: none;
   cursor: pointer;
   font-size: var(--font-size-button);
+}
+
+.disabled {
+  background-color: var(--button-color-disabled) !important;
+  pointer-events: none;
 }
 
 .default {

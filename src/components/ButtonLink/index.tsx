@@ -7,10 +7,21 @@ interface Props extends ButtonProps {
   link: string;
 }
 
-const ButtonLink: FC<Props> = ({ label, link, type = 'default', onClick }) => {
+const ButtonLink: FC<Props> = ({
+  label,
+  link,
+  type = 'default',
+  onClick,
+  disabled,
+}) => {
   return (
     <Link className={styles.buttonLink} to={link}>
-      <Button label={label} type={type} onClick={onClick}></Button>
+      <Button
+        label={label}
+        type={type}
+        onClick={onClick}
+        disabled={disabled}
+      ></Button>
     </Link>
   );
 };

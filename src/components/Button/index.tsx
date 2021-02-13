@@ -8,12 +8,20 @@ export interface Props {
   label?: string;
   onClick?: () => any;
   type?: ButtonType;
+  disabled?: boolean;
 }
 
-const Button: FC<Props> = ({ label, type = 'default', onClick }) => {
+const Button: FC<Props> = ({
+  label,
+  type = 'default',
+  onClick,
+  disabled = false,
+}) => {
   return (
     <button
-      className={classnames(styles.button, styles[type])}
+      className={classnames(styles.button, styles[type], {
+        [styles.disabled]: disabled,
+      })}
       onClick={onClick}
     >
       {label?.toUpperCase()}
