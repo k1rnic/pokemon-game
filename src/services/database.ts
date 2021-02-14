@@ -4,8 +4,7 @@ import firebaseConfig from '../config/firebase';
 
 firebase.initializeApp(firebaseConfig);
 
-export const fire = firebase;
-
+const fire = firebase;
 const databaseRef = fire.database().ref();
 
 export default databaseRef;

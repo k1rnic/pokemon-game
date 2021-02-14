@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
+import { IPokemon } from '../interfaces/pokemon';
 import database from '../services/database';
-import { IPokemon } from '../types/pokemon';
 
 export type CollectionMap = {
   pokemons: IPokemon;
@@ -12,7 +12,7 @@ export type Collection = {
   [key: string]: CollectionMap[CollectionKey];
 };
 
-export type SelectEntityFn = (entityId: string) => any;
+export type SelectEntityFn = (entityKey: string) => any;
 
 export type CreateEntityFn = (
   entity: Partial<CollectionMap[CollectionKey]>,
@@ -36,22 +36,12 @@ const useCollection = <K extends CollectionKey, T extends CollectionMap[K]>(
     database.child(collectionName).push(entity);
   };
 
-  const updateEntity: UpdateEntityFn = (entityId, updateFn) => {
+  const updateEntity: UpdateEntityFn = (entityKey, updateFn) => {
     const entity = {
-      ...updateFn(collection[entityId]),
+      ...updateFn(collection[entityKey]),
     };
 
-    database.child(collectionName).child(entityId).update(entity);
-  };
-
-  const selectEntity: SelectEntityFn = (entityId) => {
-    setCollection((state) => ({
-      ...state,
-      [entityId]: {
-        ...state[entityId],
-        isSelected: !state[entityId].isSelected,
-      },
-    }));
+    database.child(collectionName).child(entityKey).update(entity);
   };
 
   useEffect(() => {
@@ -63,7 +53,7 @@ const useCollection = <K extends CollectionKey, T extends CollectionMap[K]>(
     }
   }, [collectionName]);
 
-  return [collection, createEntity, updateEntity, selectEntity] as const;
+  return [collection, createEntity, updateEntity] as const;
 };
 
 export default useCollection;

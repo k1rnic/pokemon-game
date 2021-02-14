@@ -15,6 +15,8 @@ interface IStat {
 }
 
 export interface IPokemon {
+  player?: number;
+  possession?: string;
   abilities?: string[];
   stats?: IStat;
   type: string;
@@ -26,4 +28,5 @@ export interface IPokemon {
   values: IPosition;
   isActive?: boolean;
   isSelected?: boolean;
+  used?: boolean;
 }

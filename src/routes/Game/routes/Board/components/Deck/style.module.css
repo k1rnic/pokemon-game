@@ -1,0 +1,30 @@
+.card {
+  max-height: 15vw;
+  margin-top: -6vw;
+}
+
+.player:not(.disabled) .card:hover {
+  margin-left: -20px;
+}
+
+.card.selected {
+  margin-left: -20px;
+}
+
+.card:first-child {
+  margin-top: 0;
+}
+.player {
+  position: absolute;
+  top: 4.3vw;
+  width: 250px;
+  height: 50.3vw;
+}
+
+.player.left {
+  left: 5vw;
+}
+
+.player.right {
+  right: 5vw;
+}

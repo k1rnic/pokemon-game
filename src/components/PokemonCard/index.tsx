@@ -1,63 +1,67 @@
 import classnames from 'classnames';
 import React, { FC } from 'react';
-import { IPokemon } from '../../types/pokemon';
+import { IPokemon } from '../../interfaces/pokemon';
 import styles from './style.module.css';
 
 interface Props extends IPokemon {
-  onCardClick: (id: number) => any;
+  onCardClick?: (card: IPokemon) => any;
   minimize?: boolean;
   className?: string;
+  disabled?: boolean;
 }
 
 const PokemonCard: FC<Props> = ({
-  id,
-  name,
-  type,
-  img,
-  values,
   minimize = false,
   className,
-  isSelected,
   onCardClick,
+  disabled,
+  ...card
 }) => {
   const handleCardClick = () => {
-    onCardClick?.(id);
+    onCardClick?.(card);
   };
 
   return (
     <div
       className={classnames(className, styles.pokemonCard, {
         [styles.active]: true,
-        [styles.selected]: isSelected,
+        [styles.selected]: card.isSelected,
+        [styles.disabled]: disabled,
       })}
       onClick={handleCardClick}
     >
       <div className={styles.cardFront}>
         <div className={classnames(styles.wrap, styles.front)}>
-          <div className={classnames(styles.pokemon, styles[type])}>
+          <div
+            className={classnames(
+              styles.pokemon,
+              styles[card.type],
+              styles[card.possession!],
+            )}
+          >
             <div className={styles.values}>
               <div className={classnames(styles.count, styles.top)}>
-                {values.top}
+                {card.values.top}
               </div>
               <div className={classnames(styles.count, styles.right)}>
-                {values.right}
+                {card.values.right}
               </div>
               <div className={classnames(styles.count, styles.bottom)}>
-                {values.bottom}
+                {card.values.bottom}
               </div>
               <div className={classnames(styles.count, styles.left)}>
-                {values.left}
+                {card.values.left}
               </div>
             </div>
             <div className={styles.imgContainer}>
-              <img src={img} alt={name} />
+              <img src={card.img} alt={card.name} />
             </div>
             {!minimize && (
               <div className={styles.info}>
-                <span className={styles.number}>#{id}</span>
-                <h3 className={styles.name}>{name}</h3>
+                <span className={styles.number}>#{card.id}</span>
+                <h3 className={styles.name}>{card.name}</h3>
                 <small className={styles.type}>
-                  Type: <span>{type}</span>
+                  Type: <span>{card.type}</span>
                 </small>
               </div>
             )}
