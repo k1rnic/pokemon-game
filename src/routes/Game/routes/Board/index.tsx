@@ -1,43 +1,66 @@
-import classnames from 'classnames';
-import React, { FC } from 'react';
-import PokemonCard from '../../../../components/PokemonCard';
-import { usePokemonState } from '../../../../context/PokemonContext';
+import React, { FC, useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { useGameState } from '../../../../context/GameContext';
+import { IPokemon } from '../../../../interfaces/pokemon';
+import Deck from './components/Deck';
+import GameBoard from './components/GameBoard';
 import styles from './style.module.css';
 
 const Board: FC = () => {
-  const { selected } = usePokemonState();
+  const history = useHistory();
+  const [selectedCard, setSelectedCard] = useState<IPokemon | null>(null);
+
+  const {
+    state: {
+      cards: { player, opponent },
+      board,
+    },
+    start,
+    move,
+  } = useGameState();
+
+  useEffect(() => {
+    start?.();
+  }, [start]);
+
+  if (!Object.keys(player).length) {
+    history.replace('/game');
+  }
+
+  const handleCellClick = (position: number) => {
+    if (selectedCard) {
+      move({ position, card: selectedCard });
+      setSelectedCard(null);
+    }
+  };
+
+  const handleCardClick = (card: IPokemon) => {
+    setSelectedCard(card);
+  };
+
+  useEffect(() => {
+    console.log(board.isFill);
+
+    if (board.isFill) {
+      history.push('/game/finish');
+    }
+  }, [board.isFill, history]);
 
   return (
     <div className={styles.root}>
-      <div className={styles.playerOne}>
-        {selected.map(
-          ({ id, name, type, img, values, isActive, isSelected }) => (
-            <PokemonCard
-              className={classnames(styles.card)}
-              key={id}
-              id={id}
-              name={name}
-              type={type}
-              img={img}
-              values={values}
-              isSelected={isSelected}
-              onCardClick={() => {}}
-              minimize
-            />
-          ),
-        )}
-      </div>
-      <div className={styles.board}>
-        <div className={styles.boardPlate}>1</div>
-        <div className={styles.boardPlate}>2</div>
-        <div className={styles.boardPlate}>3</div>
-        <div className={styles.boardPlate}>4</div>
-        <div className={styles.boardPlate}>5</div>
-        <div className={styles.boardPlate}>6</div>
-        <div className={styles.boardPlate}>7</div>
-        <div className={styles.boardPlate}>8</div>
-        <div className={styles.boardPlate}>9</div>
-      </div>
+      <Deck
+        deck={Object.values(player).filter((card) => !card.used)}
+        position="left"
+        onClick={handleCardClick}
+        canMove={board.yourTurn}
+      />
+      <GameBoard board={board} onCellClick={handleCellClick} />
+      <Deck
+        deck={Object.values(opponent).filter((card) => !card.used)}
+        position="right"
+        onClick={handleCardClick}
+        canMove={!board.yourTurn}
+      />
     </div>
   );
 };

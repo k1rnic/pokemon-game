@@ -5,34 +5,46 @@ import BattleBg from '../../../../assets/img/battle-bg.png';
 import Button from '../../../../components/Button';
 import Layout from '../../../../components/Layout';
 import PokemonCard from '../../../../components/PokemonCard';
+import { useGameState } from '../../../../context/GameContext';
 import { usePokemonState } from '../../../../context/PokemonContext';
+import { IPokemon } from '../../../../interfaces/pokemon';
 import styles from './style.module.css';
 
 interface Props {}
 
 const Start: FC<Props> = () => {
-  const { items, select, selected } = usePokemonState();
+  const { items } = usePokemonState();
+  const {
+    state: {
+      cards: { player, ready },
+    },
+    select,
+    clearSelection,
+  } = useGameState();
   const history = useHistory();
 
-  const handlePokemonClick = (entityId: string) => {
-    select(entityId);
+  const handlePokemonClick = (card: IPokemon) => {
+    select(card.id, card);
   };
 
   const navigateToBoard = () => {
     history.push('game/board');
   };
 
-  useEffect(() => {}, [selected]);
+  useEffect(() => {
+    clearSelection();
+  }, [clearSelection]);
 
   return (
     <Layout id="gameSection" title="Game" urlBg={BattleBg}>
       <div className={styles.gameToolbar}>
         <Button
-          label="start"
+          label="play"
           type="default"
-          disabled={selected.length !== 5}
+          disabled={!ready}
           onClick={navigateToBoard}
         ></Button>
+        <p>choose 5 cards to start</p>
       </div>
       <div className={classnames(styles.wrap)}>
         {Object.entries(items).map(
@@ -45,8 +57,8 @@ const Start: FC<Props> = () => {
               type={type}
               img={img}
               values={values}
-              isSelected={isSelected}
-              onCardClick={() => handlePokemonClick(objID)}
+              isSelected={!!player[id]}
+              onCardClick={handlePokemonClick}
             />
           ),
         )}

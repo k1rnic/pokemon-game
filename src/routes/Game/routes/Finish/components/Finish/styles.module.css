@@ -1,0 +1,30 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 100px);
+  align-items: center;
+  width: 100%;
+  gap: 2rem;
+}
+
+.deck {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 250px);
+  gap: 2rem;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  height: 250px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.opponentCards .card:hover,
+.opponentCards .card.selected {
+  margin-top: -20px;
+  margin-bottom: 20px;
+}

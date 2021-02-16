@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { Route, Switch, useRouteMatch } from 'react-router-dom';
+import { GameProvider } from '../../context/GameContext';
 import { PokemonProvider } from '../../context/PokemonContext';
 import Board from './routes/Board';
 import Finish from './routes/Finish';
@@ -12,11 +13,13 @@ const Game: FC<Props> = () => {
 
   return (
     <PokemonProvider>
-      <Switch>
-        <Route path={`${match?.path}`} exact component={Start} />
-        <Route path={`${match?.path}/board`} component={Board} />
-        <Route path={`${match?.path}/finish`} component={Finish} />
-      </Switch>
+      <GameProvider>
+        <Switch>
+          <Route path={`${match?.path}`} exact component={Start} />
+          <Route path={`${match?.path}/board`} component={Board} />
+          <Route path={`${match?.path}/finish`} component={Finish} />
+        </Switch>
+      </GameProvider>
     </PokemonProvider>
   );
 };
